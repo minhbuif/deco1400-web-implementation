@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piano Dashboard | Piece Detail</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <a class="logo" href="index.html"><span class="logo-mark">♫</span><span>Piano Dashboard</span></a>
+  <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+  <nav class="main-nav">
+    <a href="index.html">Dashboard</a>
+    <a href="practice.html">Practice</a>
+    <a class="active" href="repertoire.html">Repertoire</a>
+    <a href="performance.html">Performance</a>
+    <a href="creative.html">Creative</a>
+  </nav>
+</header>
+<main>
+  <section class="sheet-layout">
+    <div>
+      <div class="player-row sheet-player-row">
+      </div>
+      <div class="sheet-browser" aria-label="Sheet music page browser">
+        <img class="sheet-img" id="sheetImage" src="images/nocturne-1.png" alt="Liebestraum sheet music page 1">
+      </div>
+      <div class="sheet-pagination" aria-label="Sheet page navigation">
+        <button class="btn secondary small-btn" id="sheetPrevBottom">‹ Previous Page</button>
+        <p id="sheetPageStatus">Page 1 of 6</p>
+        <button class="btn secondary small-btn" id="sheetNextBottom">Next Page ›</button>
+      </div>
+      <div class="sheet-thumbs" id="sheetThumbs" aria-label="Sheet page thumbnails">
+        <button class="sheet-thumb active" data-sheet-index="0"><img src="images/nocturne-1.png" alt="Page 1 thumbnail"><span>1</span></button>
+        <button class="sheet-thumb" data-sheet-index="1"><img src="images/nocturne-2.png" alt="Page 2 thumbnail"><span>2</span></button>
+        <button class="sheet-thumb" data-sheet-index="2"><img src="images/nocturne-3.png" alt="Page 3 thumbnail"><span>3</span></button>
+        <button class="sheet-thumb" data-sheet-index="3"><img src="images/nocturne-4.png" alt="Page 4 thumbnail"><span>4</span></button>
+        <button class="sheet-thumb" data-sheet-index="4"><img src="images/nocturne-5.png" alt="Page 5 thumbnail"><span>5</span></button>
+        <button class="sheet-thumb" data-sheet-index="5"><img src="images/nocturne-6.png" alt="Page 6 thumbnail"><span>6</span></button>
+      </div>
+    </div>
+    <aside class="detail">
+      <h1>Chopin Nocturne in D-Flat Major, Op. 27, No. 2</h1>
+      <div class="detail-buttons"><a class="btn" href="practice.html">▷ Start Practice</a><button class="btn red">▶ View Recording</button></div>
+      <div class="meta-table"><span>Pages</span><span>6</span><span>Duration</span><span>3:50</span><span>Measures</span><span>88</span><span>Key</span><span>A♭ major, F minor</span><span>Parts</span><span>1</span></div>
+      <h2>Notes</h2><textarea class="notes" id="notesArea" data-storage-key="nocturne-notes"></textarea><p class="save-status" id="saveStatus">Autosave is on</p>
+    </aside>
+  </section>
+</main>
+<footer class="site-footer">Piano Dashboard student website prototype.</footer><script src="js/script.js"></script>
+</body></html>

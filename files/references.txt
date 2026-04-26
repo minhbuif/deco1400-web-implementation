@@ -1,0 +1,5 @@
+References and acknowledgements
+
+- This website structure follows the DECO1400 Website Implementation requirement: root HTML files, css/style.css, js/script.js, images/ and files/ folders.
+- Placeholder SVG images in the images folder were created for this draft and should be replaced by the student's own exported Figma assets before final submission.
+- Generative AI acknowledgement: ChatGPT was used to help structure and draft starter HTML, CSS and JavaScript. The student should review, modify, test, and acknowledge AI use according to UQ guidance.

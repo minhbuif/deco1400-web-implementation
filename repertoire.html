@@ -1,37 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Piano Dashboard | Repertoire</title><link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piano Dashboard | Repertoire</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<header class="site-header"><a class="logo" href="index.html"><span class="logo-mark">♫</span><span>Piano Dashboard</span></a><button class="nav-toggle" aria-label="Toggle navigation">☰</button><nav class="main-nav"><a href="index.html">Dashboard</a><a href="practice.html">Practice</a><a class="active" href="repertoire.html">Repertoire</a><a href="performance.html">Performance</a><a href="creative.html">Creative</a></nav></header>
-<main>
-  <section class="page-head"><div><h1>Repertoire</h1><p class="subtitle">Manage your piano pieces</p></div><a class="btn" href="piece.html">＋ Add Piece</a></section>
-  <section class="repertoire-controls" aria-label="Repertoire filters"><input class="search-box" id="pieceSearch" type="search" placeholder="Search pieces or composers..."><select class="filter-box" id="difficultyFilter"><option value="all">All Difficulty</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></section>
-  <p class="no-results" id="noResults">No pieces match your search.</p>
-  <h2 class="section-title">Recently Played</h2>
-  <section class="grid-4">
-    <a class="card piece-card" href="piece.html" data-title="Liebestraum S. 541 No. 3 in Ab Major" data-composer="Franz Liszt" data-difficulty="advanced"><img src="images/liebestraum-1.png" alt="Liebestraum sheet music"><span class="piece-title">Liebestraum S. 541 No. 3 in Ab Major</span><span class="badge advanced">Advanced</span></a>
-    <a class="card piece-card" href="piece.html" data-title="Opus 27 No 2 Moonlight Sonata 1st Movement" data-composer="Ludwig van Beethoven" data-difficulty="beginner"><img src="images/moonlight-1.jpg" alt="Moonlight Sonata sheet music"><span class="piece-title">Opus 27 No 2 Moonlight Sonata 1st Movement</span><span class="badge beginner">Beginner</span></a>
-    <a class="card piece-card" href="nocturne.html" data-title="Chopin Nocturne in D-Flat Major, Op. 27, No. 2" data-composer="Frederic Chopin" data-difficulty="advanced"><img src="images/nocturne-1.png" alt="Chopin Nocturne sheet music"><span class="piece-title">Chopin Nocturne in D-Flat Major, Op. 27, No. 2</span><span class="badge advanced">Advanced</span></a>
-    <a class="card piece-card" href="piece.html" data-title="Piano Sonata No. 11 K. 331 3rd Movement Rondo alla Turca" data-composer="Wolfgang Amadeus Mozart" data-difficulty="intermediate"><img src="images/turkish-1.png" alt="Rondo alla Turca sheet music"><span class="piece-title">Piano Sonata No. 11 K. 331 3rd Movement, “Rondo alla Turca”</span><span class="badge intermediate">Intermediate</span></a>
-  </section>
-  <div class="browse-head">
-    <h2 class="section-title" style="margin:0">Browse</h2>
-    <div class="browse-arrows" aria-label="Browse pieces carousel controls">
-      <button class="text-button" id="viewAllBrowse" type="button">View All</button>
-      <button class="arrow-button" id="browsePrev" type="button" aria-label="Previous pieces">‹</button>
-      <button class="arrow-button" id="browseNext" type="button" aria-label="Next pieces">›</button>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <span class="logo-mark">♫</span>
+      <span>Piano Dashboard</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+
+    <nav class="main-nav">
+      <a href="index.html">Dashboard</a>
+      <a href="practice.html">Practice</a>
+      <a class="active" href="repertoire.html">Repertoire</a>
+      <a href="performance.html">Performance</a>
+      <a href="creative.html">Creative</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-head">
+      <div>
+        <h1>Repertoire</h1>
+        <p class="subtitle">Manage your piano pieces</p>
+      </div>
+
+      <a class="btn" href="piece.html?id=liebestraum">＋ Add Piece</a>
+    </section>
+
+    <section class="repertoire-controls" aria-label="Repertoire filters">
+      <input
+        class="search-box"
+        id="pieceSearch"
+        type="search"
+        placeholder="Search pieces or composers..."
+      >
+
+      <select class="filter-box" id="difficultyFilter">
+        <option value="all">All Difficulty</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </section>
+
+    <p class="no-results" id="noResults">No pieces match your search.</p>
+
+    <h2 class="section-title">Recently Played</h2>
+
+    <section class="grid-4">
+      <a
+        class="card piece-card"
+        href="piece.html?id=liebestraum"
+        data-title="Liebestraum S. 541 No. 3 in Ab Major"
+        data-composer="Franz Liszt"
+        data-difficulty="advanced"
+      >
+        <img src="images/liebestraum-1.png" alt="Liebestraum sheet music">
+        <span class="piece-title">Liebestraum S. 541 No. 3 in Ab Major</span>
+        <span class="badge advanced">Advanced</span>
+      </a>
+
+      <a
+        class="card piece-card"
+        href="piece.html?id=moonlight"
+        data-title="Opus 27 No 2 Moonlight Sonata 1st Movement"
+        data-composer="Ludwig van Beethoven"
+        data-difficulty="beginner"
+      >
+        <img src="images/moonlight-1.jpg" alt="Moonlight Sonata sheet music">
+        <span class="piece-title">Opus 27 No 2 Moonlight Sonata 1st Movement</span>
+        <span class="badge beginner">Beginner</span>
+      </a>
+
+      <a
+        class="card piece-card"
+        href="piece.html?id=nocturne"
+        data-title="Chopin Nocturne in D-Flat Major, Op. 27, No. 2"
+        data-composer="Frederic Chopin"
+        data-difficulty="advanced"
+      >
+        <img src="images/nocturne-1.png" alt="Chopin Nocturne sheet music">
+        <span class="piece-title">Chopin Nocturne in D-Flat Major, Op. 27, No. 2</span>
+        <span class="badge advanced">Advanced</span>
+      </a>
+
+      <a
+        class="card piece-card"
+        href="piece.html?id=turkish"
+        data-title="Piano Sonata No. 11 K. 331 3rd Movement Rondo alla Turca"
+        data-composer="Wolfgang Amadeus Mozart"
+        data-difficulty="intermediate"
+      >
+        <img src="images/turkish-1.png" alt="Rondo alla Turca sheet music">
+        <span class="piece-title">Piano Sonata No. 11 K. 331 3rd Movement, “Rondo alla Turca”</span>
+        <span class="badge intermediate">Intermediate</span>
+      </a>
+    </section>
+
+    <div class="browse-head">
+      <h2 class="section-title" style="margin:0">Browse</h2>
+
+      <div class="browse-arrows">
+        <button type="button" id="viewAllBrowse" class="text-button">View All</button>
+        <button type="button" id="browsePrev" class="arrow-button">‹</button>
+        <button type="button" id="browseNext" class="arrow-button">›</button>
+      </div>
     </div>
-  </div>
-  <p class="browse-status" id="browseStatus">Showing 1-4 of 4 pieces</p>
-  <section class="grid-4 browse-grid" id="browseGrid" aria-label="Browse all repertoire pieces">
-    <a class="card piece-card browse-piece" href="piece.html" data-title="Moonlight Sonata 1st Movement" data-composer="Ludwig van Beethoven" data-difficulty="beginner"><img src="images/moonlight-1.jpg" alt="Moonlight Sonata sheet music"><span class="piece-title">Moonlight Sonata 1st Movement</span><span class="badge beginner">Beginner</span></a>
-    <a class="card piece-card browse-piece" href="piece.html" data-title="Liebestraum S. 541 No. 3 in Ab Major" data-composer="Franz Liszt" data-difficulty="advanced"><img src="images/liebestraum-1.png" alt="Liebestraum sheet music"><span class="piece-title">Liebestraum S. 541 No. 3 in Ab Major</span><span class="badge advanced">Advanced</span></a>
-    <a class="card piece-card browse-piece" href="piece.html" data-title="Chopin Nocturne in D-Flat Major, Op. 27, No. 2" data-composer="Frederic Chopin" data-difficulty="advanced"><img src="images/nocturne-1.png" alt="Chopin Nocturne sheet music"><span class="piece-title">Chopin Nocturne in D-Flat Major, Op. 27, No. 2</span><span class="badge advanced">Advanced</span></a>
-    <a class="card piece-card browse-piece" href="piece.html" data-title="Piano Sonata No. 11 K. 331 3rd Movement Rondo alla Turca" data-composer="Wolfgang Amadeus Mozart" data-difficulty="intermediate"><img src="images/turkish-1.png" alt="Rondo alla Turca sheet music"><span class="piece-title">Piano Sonata No. 11 K. 331 3rd Movement, “Rondo alla Turca”</span><span class="badge intermediate">Intermediate</span></a>
-  </section>
-</main>
-<footer class="site-footer">Piano Dashboard student website prototype.</footer><script src="js/script.js"></script>
+    
+    <p class="browse-status" id="browseStatus">Showing 1-4 of 4 pieces</p>
+    <section class="grid-4 browse-grid" id="browseGrid">
+      <a
+        class="card piece-card browse-card"
+        href="piece.html?id=moonlight"
+        data-title="Opus 27 No 2 Moonlight Sonata 1st Movement"
+        data-composer="Ludwig van Beethoven"
+        data-difficulty="beginner"
+      >
+        <img src="images/moonlight-1.jpg" alt="Moonlight Sonata sheet music">
+        <span class="piece-title">Opus 27 No 2 Moonlight Sonata 1st Movement</span>
+        <span class="badge beginner">Beginner</span>
+      </a>
+
+      <a
+        class="card piece-card browse-card"
+        href="piece.html?id=liebestraum"
+        data-title="Liebestraum S. 541 No. 3 in Ab Major"
+        data-composer="Franz Liszt"
+        data-difficulty="advanced"
+      >
+        <img src="images/liebestraum-1.png" alt="Liebestraum sheet music">
+        <span class="piece-title">Liebestraum S. 541 No. 3 in Ab Major</span>
+        <span class="badge advanced">Advanced</span>
+      </a>
+
+      <a
+        class="card piece-card browse-card"
+        href="piece.html?id=nocturne"
+        data-title="Chopin Nocturne in D-Flat Major, Op. 27, No. 2"
+        data-composer="Frederic Chopin"
+        data-difficulty="advanced"
+      >
+        <img src="images/nocturne-1.png" alt="Chopin Nocturne sheet music">
+        <span class="piece-title">Chopin Nocturne in D-Flat Major, Op. 27, No. 2</span>
+        <span class="badge advanced">Advanced</span>
+      </a>
+
+      <a
+        class="card piece-card browse-card"
+        href="piece.html?id=turkish"
+        data-title="Piano Sonata No. 11 K. 331 3rd Movement Rondo alla Turca"
+        data-composer="Wolfgang Amadeus Mozart"
+        data-difficulty="intermediate"
+      >
+        <img src="images/turkish-1.png" alt="Rondo alla Turca sheet music">
+        <span class="piece-title">Piano Sonata No. 11 K. 331 3rd Movement, “Rondo alla Turca”</span>
+        <span class="badge intermediate">Intermediate</span>
+      </a>
+    </section>
+  </main>
+  <script src="js/script.js"></script>
 </body>
 </html>

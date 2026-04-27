@@ -36,23 +36,9 @@
 
     <section class="weekly-card">
       <h2>Weekly Practice</h2>
-      <div class="bar-chart" aria-label="Weekly practice minutes bar chart">
-        <div class="y-axis">
-          <span class="y-label" style="top:0%">60</span>
-          <span class="y-label" style="top:16.6%">50</span>
-          <span class="y-label" style="top:33.2%">40</span>
-          <span class="y-label" style="top:49.8%">30</span>
-          <span class="y-label" style="top:66.4%">20</span>
-          <span class="y-label" style="top:83%">10</span>
-          <span class="y-label" style="top:100%">0</span>
-        </div>
-        <div></div>
-        <div class="bar-slot"><div class="bar" style="height:0"></div><div class="bar-label">Mon</div></div>
-        <div class="bar-slot"><div class="bar" style="height:0"></div><div class="bar-label">Tue</div></div>
-        <div class="bar-slot"><div class="bar" style="height:0"></div><div class="bar-label">Wed</div></div>
-        <div class="bar-slot"><div class="bar" style="height:160px"></div><div class="bar-label">Fri</div></div>
-        <div class="bar-slot"><div class="bar" style="height:255px"></div><div class="bar-label">Sat</div></div>
-        <div class="bar-slot"><div class="bar" style="height:210px"></div><div class="bar-label">Sun</div></div>
+      <div class="chart-container">
+        <canvas id="weeklyPracticeChart"></canvas>
+      </div>
       </div>
     </section>
 
@@ -64,6 +50,7 @@
       <a class="card piece-card" href="piece.html"><img src="images/turkish-1.png" alt="Rondo alla Turca sheet music"><span class="piece-title">Piano Sonata No. 11 K. 331 3rd Movement, “Rondo alla Turca”</span></a>
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>

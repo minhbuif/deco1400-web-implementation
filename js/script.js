@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   setupBrowseCarousel();
   setupPieceDetailPage();
   setupNotesAutosave();
+  setupWeeklyPracticeChart();
 });
 
 /* -----------------------------
@@ -269,7 +270,7 @@ function setupBrowseCarousel() {
 
 const pianoPieces = {
   liebestraum: {
-    title: 'Liebestraum S. 541 No. 3 in Ab Major – Liszt',
+    title: 'Liebestraum S. 541 No. 3 in A♭ Major - Liszt',
     duration: '3:50',
     playback: '00:04 / 03:51',
     measures: '88',
@@ -287,11 +288,11 @@ const pianoPieces = {
   },
 
   moonlight: {
-    title: 'Opus 27 No. 2 Moonlight Sonata 1st Movement – Beethoven',
-    duration: '5:20',
-    playback: '00:00 / 05:20',
+    title: 'Opus 27 No. 2 Moonlight Sonata 1st Movement - Beethoven',
+    duration: '5:25',
+    playback: '00:00 / 05:25',
     measures: '69',
-    key: 'C♯ minor',
+    key: 'E major, C♯ minor',
     parts: '1',
     notesKey: 'moonlight-notes',
     pages: [
@@ -308,11 +309,11 @@ const pianoPieces = {
   },
 
   nocturne: {
-    title: 'Chopin Nocturne in D-Flat Major, Op. 27, No. 2',
-    duration: '6:15',
-    playback: '00:00 / 06:15',
+    title: 'Nocturne in D-Flat Major, Op. 27, No. 2 - Chopin',
+    duration: '5:05',
+    playback: '00:00 / 5:05',
     measures: '77',
-    key: 'D♭ major',
+    key: 'D♭ major, B♭ minor',
     parts: '1',
     notesKey: 'nocturne-notes',
     pages: [
@@ -326,11 +327,11 @@ const pianoPieces = {
   },
 
   turkish: {
-    title: 'Piano Sonata No. 11 K. 331, 3rd Movement, “Rondo alla Turca” – Mozart',
-    duration: '3:30',
-    playback: '00:00 / 03:30',
-    measures: '120',
-    key: 'A minor',
+    title: 'Piano Sonata No. 11 K. 331, 3rd Movement, “Rondo alla Turca” - Mozart',
+    duration: '3:44',
+    playback: '00:00 / 03:44',
+    measures: '137',
+    key: 'C major, A minor',
     parts: '1',
     notesKey: 'turkish-notes',
     pages: [
@@ -498,5 +499,88 @@ function setupNotesAutosave() {
         saveStatus.textContent = 'Autosave is on';
       }
     }, 1000);
+  });
+}
+
+// Weekly practice chart
+
+function setupWeeklyPracticeChart() {
+  const chartCanvas = document.getElementById('weeklyPracticeChart');
+
+  if (!chartCanvas) return;
+
+  if (typeof Chart === 'undefined') {
+    console.warn('Chart.js is not loaded.');
+    return;
+  }
+
+  new Chart(chartCanvas, {
+    type: 'bar',
+    data: {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [
+        {
+          label: 'Practice Minutes',
+          data: [0, 0, 0, 0, 30, 50, 41],
+          backgroundColor: '#000000',
+          borderColor: '#000000',
+          borderWidth: 1,
+          borderRadius: 8,
+          barThickness: 130
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              return context.raw + ' minutes';
+            }
+          }
+        }
+      },
+
+      scales: {
+        x: {
+          grid: {
+            display: false
+          },
+          border: {
+            display: false
+          },
+          ticks: {
+            color: '#000000',
+            font: {
+              size: 11
+            }
+          }
+        },
+
+        y: {
+          beginAtZero: true,
+          max: 60,
+          ticks: {
+            stepSize: 10,
+            color: '#000000',
+            font: {
+              size: 11
+            }
+          },
+          grid: {
+            display: false
+          },
+          border: {
+            display: false
+          }
+        }
+      }
+    }
   });
 }

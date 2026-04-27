@@ -928,3 +928,23 @@ textarea.notes {
     height: 76px;
   }
 }
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  padding: 10px 35px 20px;
+}
+
+.weekly-card {
+  border: 1px solid #cfcfcf;
+  border-radius: 46px;
+  padding: 22px 42px 30px;
+  margin-bottom: 24px;
+}
+
+.weekly-card canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

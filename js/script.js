@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function () {
   setupPieceDetailPage();
   setupNotesAutosave();
   setupWeeklyPracticeChart();
+  setupPracticeAnalyticsChart();
+  setupPdfUploadModal();
 });
 
 /* -----------------------------
@@ -277,6 +279,7 @@ const pianoPieces = {
     key: 'A♭ major, F minor',
     parts: '1',
     notesKey: 'liebestraum-notes',
+    recordingUrl: 'https://www.youtube.com/watch?v=bhYfOh6dn3o',
     pages: [
       'images/liebestraum-1.png',
       'images/liebestraum-2.png',
@@ -295,6 +298,7 @@ const pianoPieces = {
     key: 'E major, C♯ minor',
     parts: '1',
     notesKey: 'moonlight-notes',
+    recordingUrl: 'https://www.youtube.com/watch?v=ITidiBe-0T0',
     pages: [
       'images/moonlight-1.jpg',
       'images/moonlight-2.jpg',
@@ -316,6 +320,7 @@ const pianoPieces = {
     key: 'D♭ major, B♭ minor',
     parts: '1',
     notesKey: 'nocturne-notes',
+    recordingUrl: 'https://www.youtube.com/watch?v=QoYN4ubUusc',
     pages: [
       'images/nocturne-1.png',
       'images/nocturne-2.png',
@@ -334,6 +339,7 @@ const pianoPieces = {
     key: 'C major, A minor',
     parts: '1',
     notesKey: 'turkish-notes',
+    recordingUrl: 'https://www.youtube.com/watch?v=n2Tru4Qa3pc',
     pages: [
       'images/turkish-1.png',
       'images/turkish-2.png',
@@ -371,6 +377,7 @@ function setupPieceDetailPage() {
   const nextButton = document.getElementById('nextSheetPage');
   const prevBottomButton = document.getElementById('prevSheetPageBottom');
   const nextBottomButton = document.getElementById('nextSheetPageBottom');
+  const viewRecordingButton = document.getElementById('viewRecordingButton');
 
   function loadPieceInformation() {
     document.title = `Piano Dashboard | ${currentPiece.title}`;
@@ -383,6 +390,10 @@ function setupPieceDetailPage() {
     if (pieceMeasures) pieceMeasures.textContent = currentPiece.measures;
     if (pieceKey) pieceKey.textContent = currentPiece.key;
     if (pieceParts) pieceParts.textContent = currentPiece.parts;
+
+    if (viewRecordingButton) {
+      viewRecordingButton.href = currentPiece.recordingUrl;
+    }
 
     if (notesArea) {
       notesArea.dataset.storageKey = currentPiece.notesKey;
@@ -581,6 +592,223 @@ function setupWeeklyPracticeChart() {
           }
         }
       }
+    }
+  });
+}
+
+/* -----------------------------
+   Practice page Chart.js chart
+----------------------------- */
+
+function setupPracticeAnalyticsChart() {
+  const chartCanvas = document.getElementById('sessionAnalyticsChart');
+  const pieceSelect = document.getElementById('practicePiece');
+  const chartCaption = document.getElementById('sessionChartCaption');
+
+  if (!chartCanvas || !pieceSelect) return;
+
+  if (typeof Chart === 'undefined') {
+    console.warn('Chart.js is not loaded on practice.html');
+    return;
+  }
+
+  const practiceData = {
+    overall: {
+      title: 'overall practice sessions',
+      labels: ['Session 1', 'Session 2', 'Session 3'],
+      minutes: [30, 45, 25]
+    },
+
+    liebestraum: {
+      title: 'Liebestraum No. 3',
+      labels: ['Session 1', 'Session 2', 'Session 3', 'Session 4'],
+      minutes: [25, 32, 38, 45]
+    },
+
+    moonlight: {
+      title: 'Moonlight Sonata 1st Movement',
+      labels: ['Session 1', 'Session 2', 'Session 3'],
+      minutes: [40, 45, 50]
+    },
+
+    nocturne: {
+      title: 'Chopin Nocturne Op. 27 No. 2',
+      labels: ['Session 1', 'Session 2', 'Session 3'],
+      minutes: [20, 35, 40]
+    },
+
+    turca: {
+      title: 'Rondo alla Turca',
+      labels: ['Session 1', 'Session 2', 'Session 3'],
+      minutes: [30, 28, 36]
+    }
+  };
+
+  const selectedData = practiceData[pieceSelect.value] || practiceData.overall;
+
+  const sessionChart = new Chart(chartCanvas, {
+    type: 'line',
+
+    data: {
+      labels: selectedData.labels,
+      datasets: [
+        {
+          label: 'Practice Minutes',
+          data: selectedData.minutes,
+          borderColor: '#000000',
+          backgroundColor: '#000000',
+          borderWidth: 3,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          tension: 0.15
+        }
+      ]
+    },
+
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+
+      plugins: {
+        legend: {
+          display: false
+        },
+
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              return context.raw + ' minutes';
+            }
+          }
+        }
+      },
+
+      scales: {
+        x: {
+          grid: {
+            display: false
+          },
+          border: {
+            display: false
+          },
+          ticks: {
+            color: '#000000',
+            font: {
+              size: 12
+            }
+          }
+        },
+
+        y: {
+          beginAtZero: true,
+          suggestedMax: 60,
+          ticks: {
+            stepSize: 10,
+            color: '#999999',
+            font: {
+              size: 12
+            }
+          },
+          grid: {
+            color: '#dddddd'
+          },
+          border: {
+            display: false
+          }
+        }
+      }
+    }
+  });
+
+  function updateChartForSelectedPiece() {
+    const pieceId = pieceSelect.value;
+    const newData = practiceData[pieceId] || practiceData.overall;
+
+    sessionChart.data.labels = newData.labels;
+    sessionChart.data.datasets[0].data = newData.minutes;
+    sessionChart.update();
+
+    if (chartCaption) {
+      chartCaption.textContent = 'Showing practice sessions for ' + newData.title;
+    }
+  }
+
+  pieceSelect.addEventListener('change', updateChartForSelectedPiece);
+
+  updateChartForSelectedPiece();
+}
+
+function setupPdfUploadModal() {
+  const openButton = document.getElementById('openUploadModal');
+  const modal = document.getElementById('uploadModal');
+  const closeButton = document.getElementById('closeUploadModal');
+  const cancelButton = document.getElementById('cancelUploadButton');
+  const choosePdfButton = document.getElementById('choosePdfButton');
+  const pdfInput = document.getElementById('pdfUploadInput');
+  const confirmButton = document.getElementById('confirmUploadButton');
+
+  if (!openButton || !modal || !pdfInput) return;
+
+  function openModal() {
+    modal.classList.add('open');
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    pdfInput.value = '';
+
+    if (choosePdfButton) {
+      choosePdfButton.textContent = 'Select PDF';
+    }
+  }
+
+  openButton.addEventListener('click', openModal);
+
+  if (closeButton) closeButton.addEventListener('click', closeModal);
+  if (cancelButton) cancelButton.addEventListener('click', closeModal);
+
+  if (choosePdfButton) {
+    choosePdfButton.addEventListener('click', function () {
+      pdfInput.click();
+    });
+  }
+
+  pdfInput.addEventListener('change', function () {
+    const file = pdfInput.files[0];
+
+    if (!file) return;
+
+    const isPdf =
+      file.type === 'application/pdf' ||
+      file.name.toLowerCase().endsWith('.pdf');
+
+    if (!isPdf) {
+      alert('Please choose a PDF file.');
+      pdfInput.value = '';
+      return;
+    }
+
+    if (choosePdfButton) {
+      choosePdfButton.textContent = file.name;
+    }
+  });
+
+  if (confirmButton) {
+    confirmButton.addEventListener('click', function () {
+      const file = pdfInput.files[0];
+
+      if (!file) {
+        alert('Please select a PDF file first.');
+        return;
+      }
+
+      closeModal();
+    });
+  }
+
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      closeModal();
     }
   });
 }

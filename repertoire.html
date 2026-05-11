@@ -13,9 +13,6 @@
       <span class="logo-mark">♫</span>
       <span>Piano Dashboard</span>
     </a>
-
-    <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
-
     <nav class="main-nav">
       <a href="index.html">Dashboard</a>
       <a href="practice.html">Practice</a>
@@ -32,7 +29,7 @@
         <p class="subtitle">Manage your piano pieces</p>
       </div>
 
-      <a class="btn" href="piece.html?id=liebestraum">＋ Add Piece</a>
+      <button class="btn" id="openUploadModal" type="button">＋ Add Piece</button>
     </section>
 
     <section class="repertoire-controls" aria-label="Repertoire filters">
@@ -165,6 +162,30 @@
         <span class="badge intermediate">Intermediate</span>
       </a>
     </section>
+
+    <div class="modal-overlay" id="uploadModal">
+      <div class="upload-modal">
+        <button class="modal-close" id="closeUploadModal" type="button">×</button>
+
+        <h2>Add New Piece</h2>
+        <p class="subtitle">Upload a PDF sheet music file to add a new piece.</p>
+
+        <div class="upload-box" id="uploadBox">
+          <p class="upload-icon">📄</p>
+          <p><strong>Choose a PDF file</strong></p>
+          <p class="upload-hint">Accepted format: .pdf</p>
+
+          <input id="pdfUploadInput" type="file" accept="application/pdf,.pdf" hidden>
+          <button class="btn secondary" id="choosePdfButton" type="button">Select PDF</button>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn secondary" id="cancelUploadButton" type="button">Cancel</button>
+          <button class="btn" id="confirmUploadButton" type="button">Add Piece</button>
+        </div>
+      </div>
+    </div>
+
   </main>
   <script src="js/script.js"></script>
 </body>

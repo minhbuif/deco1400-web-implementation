@@ -95,8 +95,7 @@ textarea {
   text-decoration: none;
 }
 
-.main-nav a.active,
-.main-nav a:hover {
+.main-nav a.active {
   font-weight: 700;
 }
 

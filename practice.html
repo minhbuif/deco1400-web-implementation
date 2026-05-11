@@ -8,13 +8,25 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="logo" href="index.html"><span class="logo-mark">♫</span><span>Piano Dashboard</span></a>
+    <a class="logo" href="index.html">
+      <span class="logo-mark">♫</span>
+      <span>Piano Dashboard</span>
+    </a>
     <nav class="main-nav">
-      <a href="index.html">Dashboard</a><a class="active" href="practice.html">Practice</a><a href="repertoire.html">Repertoire</a><a href="performance.html">Performance</a><a href="creative.html">Creative</a>
+      <a href="index.html">Dashboard</a>
+      <a class="active" href="practice.html">Practice</a>
+      <a href="repertoire.html">Repertoire</a>
+      <a href="performance.html">Performance</a>
+      <a href="creative.html">Creative</a>
     </nav>
   </header>
   <main>
-    <section class="page-head"><div><h1>Practice Session</h1><p class="subtitle">Track your practice time and progress</p></div></section>
+    <section class="page-head">
+      <div>
+        <h1>Practice Session</h1>
+        <p class="subtitle">Track your practice time and progress</p>
+      </div>
+    </section>
     <section class="practice-top">
       <article class="panel">
         <h2>Practice Timer</h2>
@@ -27,7 +39,11 @@
           <option value="turca">Rondo alla Turca</option>
         </select>
         <div class="timer" id="timerDisplay">00:00:00</div>
-        <div class="button-row"><button class="btn" id="startTimer">▷ Start</button><button class="btn secondary" id="stopTimer">□ Stop</button><button class="btn secondary" id="resetTimer">Reset</button></div>
+        <div class="button-row">
+          <button class="btn" id="startTimer">▷ Start</button>
+          <button class="btn secondary" id="stopTimer">□ Stop</button>
+          <button class="btn secondary" id="resetTimer">Reset</button>
+        </div>
       </article>
       <div class="panel">
         <h3>Session Analytics</h3>
@@ -43,9 +59,36 @@
     </section>
     <section class="card sessions-card">
       <h2>Recent Sessions</h2>
-      <div class="session-row"><div><p class="session-title">Moonlight Sonata (1st Movement)</p><p class="session-composer">Ludwig van Beethoven</p></div><div class="session-meta"><div class="session-min">⏱ 45 Min</div><div>27/03/2026</div></div></div>
-      <div class="session-row"><div><p class="session-title">Liebestraum No. 3</p><p class="session-composer">Franz Liszt</p></div><div class="session-meta"><div class="session-min">⏱ 25 Min</div><div>27/03/2026</div></div></div>
-      <div class="session-row"><div><p class="session-title">Nocturne Op. 27 No. 2</p><p class="session-composer">Frederic Chopin</p></div><div class="session-meta"><div class="session-min">⏱ 40 Min</div><div>27/03/2026</div></div></div>
+      <div class="session-row">
+        <div>
+          <p class="session-title">Moonlight Sonata (1st Movement)</p>
+          <p class="session-composer">Ludwig van Beethoven</p>
+        </div>
+        <div class="session-meta">
+          <div class="session-min">⏱ 45 Min</div>
+          <div>27/03/2026</div>
+        </div>
+      </div>
+      <div class="session-row">
+        <div>
+          <p class="session-title">Liebestraum No. 3</p>
+          <p class="session-composer">Franz Liszt</p>
+        </div>
+        <div class="session-meta">
+          <div class="session-min">⏱ 25 Min</div>
+          <div>27/03/2026</div>
+        </div>
+      </div>
+      <div class="session-row">
+        <div>
+          <p class="session-title">Nocturne Op. 27 No. 2</p>
+          <p class="session-composer">Frederic Chopin</p>
+        </div>
+        <div class="session-meta">
+          <div class="session-min">⏱ 40 Min</div>
+          <div>27/03/2026</div>
+        </div>
+      </div>
     </section>
   </main>
   <script src="js/chart.umd.min.js"></script>

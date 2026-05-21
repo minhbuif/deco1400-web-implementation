@@ -73,15 +73,6 @@ textarea {
   line-height: 1;
 }
 
-.nav-toggle {
-  display: none;
-  border: 1px solid var(--line);
-  background: #fff;
-  border-radius: 8px;
-  padding: 8px 10px;
-  cursor: pointer;
-}
-
 .main-nav {
   display: flex;
   align-items: center;
@@ -241,66 +232,6 @@ h3 {
   margin-bottom: 42px;
 }
 
-.weekly-card {
-  border: 1px solid var(--line);
-  border-radius: 46px;
-  padding: 18px 42px 30px;
-  margin-bottom: 24px;
-}
-
-.bar-chart {
-  height: 350px;
-  position: relative;
-  display: grid;
-  grid-template-columns: 80px repeat(7, 1fr);
-  align-items: end;
-  gap: 12px;
-  padding-top: 8px;
-}
-
-.y-axis {
-  position: absolute;
-  left: 68px;
-  top: 10px;
-  bottom: 34px;
-  width: 1px;
-}
-
-.y-label {
-  position: absolute;
-  right: 0;
-  transform: translateY(50%);
-  font-size: 9px;
-  color: #333;
-}
-
-.bar-slot {
-  height: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.bar {
-  width: 130px;
-  background: #000;
-  border-radius: 9px;
-  animation: rise 700ms ease-out both;
-}
-
-@keyframes rise {
-  from { transform: scaleY(0); transform-origin: bottom; }
-  to { transform: scaleY(1); transform-origin: bottom; }
-}
-
-.bar-label {
-  height: 14px;
-  font-size: 9px;
-  color: #222;
-}
-
 .section-title {
   font-size: 25px;
   font-weight: 700;
@@ -408,13 +339,6 @@ h3 {
   display: flex;
   justify-content: center;
   gap: 30px;
-}
-
-.line-chart {
-  min-height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .sessions-card {
@@ -725,10 +649,6 @@ textarea.notes {
     padding: 0 22px;
   }
 
-  .nav-toggle {
-    display: block;
-  }
-
   .main-nav {
     display: none;
     position: absolute;
@@ -768,10 +688,6 @@ textarea.notes {
     height: 360px;
   }
 
-  .bar {
-    width: 60px;
-  }
-
   .sheet-layout {
     padding: 32px 0 0;
   }
@@ -796,16 +712,6 @@ textarea.notes {
     padding-top: 26px;
   }
 
-  .weekly-card {
-    padding: 18px;
-    border-radius: 24px;
-    overflow-x: auto;
-  }
-
-  .bar-chart {
-    min-width: 680px;
-  }
-
   .session-row {
     flex-direction: column;
     align-items: flex-start;
@@ -819,32 +725,6 @@ textarea.notes {
   .timer {
     font-size: 38px;
   }
-}
-
-/* Sheet music page browser */
-.browse-arrows {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.text-button,
-.arrow-button {
-  border: none;
-  background: transparent;
-  color: #000;
-  font: inherit;
-  cursor: pointer;
-}
-
-.text-button:hover,
-.arrow-button:hover {
-  text-decoration: underline;
-}
-
-.arrow-button {
-  font-size: 22px;
-  line-height: 1;
 }
 
 /* Sheet page controls */
@@ -928,6 +808,7 @@ textarea.notes {
   }
 }
 
+/* Chart.js charts */
 .chart-container {
   position: relative;
   width: 100%;
@@ -967,6 +848,7 @@ textarea.notes {
   font-size: 14px;
 }
 
+/* PDF upload modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1022,12 +904,6 @@ textarea.notes {
   margin-bottom: 18px;
 }
 
-.selected-file {
-  font-size: 14px;
-  color: #444;
-  margin-bottom: 20px;
-}
-
 .modal-actions {
   display: flex;
   justify-content: flex-end;
@@ -1042,4 +918,31 @@ textarea.notes {
   .modal-actions .btn {
     width: 100%;
   }
+}
+
+.form-group {
+  margin: 24px 0;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.text-input {
+  width: 100%;
+  height: 46px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0 14px;
+  font: inherit;
+}
+
+.perf-placeholder {
+  height: 360px;
+  background: var(--soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
 }

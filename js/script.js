@@ -1,12 +1,15 @@
 /*
-  Piano Dashboard JavaScript
+  JavaScript functions
   Includes:
   1. Mobile navigation
   2. Practice timer
   3. Repertoire search and filter
   4. Browse carousel
   5. Dynamic piano sheet page viewer
-  6. Notes autosave
+  6. Weekly practice chart
+  7. Practice session analytics chart
+  8. PDF upload modal
+  9. Performance entry modal
 */
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -15,16 +18,15 @@ document.addEventListener('DOMContentLoaded', function () {
   setupRepertoireFilters();
   setupBrowseCarousel();
   setupPieceDetailPage();
-  setupNotesAutosave();
   setupWeeklyPracticeChart();
   setupPracticeAnalyticsChart();
   setupPdfUploadModal();
+  setupPerformanceModal();
 });
 
 /**
  * Mobile navigation 
  */
-
 function setupMobileNavigation() {
   const navToggle = document.querySelector('.nav-toggle');
   const mainNav = document.querySelector('.main-nav');
@@ -39,7 +41,6 @@ function setupMobileNavigation() {
 /**
  * Practice timer
  */
-
 function setupPracticeTimer() {
   const timerDisplay = document.getElementById('timerDisplay');
   const startButton = document.getElementById('startTimer');
@@ -86,7 +87,6 @@ function setupPracticeTimer() {
 /**
  * Repertoire search and filter
  */
-
 function setupRepertoireFilters() {
   const searchInput = document.getElementById('pieceSearch');
   const difficultyFilter = document.getElementById('difficultyFilter');
@@ -143,7 +143,6 @@ function setupRepertoireFilters() {
 /**
  * Browse carousel
  */
-
 function setupBrowseCarousel() {
   const browseCards = Array.from(document.querySelectorAll('.browse-card'));
   const prevButton = document.getElementById('browsePrev');
@@ -272,6 +271,7 @@ function setupBrowseCarousel() {
  * Piano sheet viewer
  */
 
+// Different pieces for page switching
 const pianoPieces = {
   liebestraum: {
     title: 'Liebestraum S. 541 No. 3 in A♭ Major - Liszt',
@@ -403,6 +403,7 @@ function setupPieceDetailPage() {
     }
   }
 
+  // Page flipping for pieces
   function renderCurrentPage() {
     sheetImage.src = currentPiece.pages[currentPage];
     sheetImage.alt = `${currentPiece.title} - page ${currentPage + 1}`;
@@ -490,35 +491,9 @@ function setupPieceDetailPage() {
   renderCurrentPage();
 }
 
-// Notes autosave
-
-function setupNotesAutosave() {
-  const notesArea = document.getElementById('notesArea');
-  const saveStatus = document.getElementById('saveStatus');
-
-  if (!notesArea) return;
-
-  notesArea.addEventListener('input', function () {
-    const storageKey = notesArea.dataset.storageKey || 'default-piece-notes';
-
-    localStorage.setItem(storageKey, notesArea.value);
-
-    if (saveStatus) {
-      saveStatus.textContent = 'Saved';
-    }
-
-    setTimeout(function () {
-      if (saveStatus) {
-        saveStatus.textContent = 'Autosave is on';
-      }
-    }, 1000);
-  });
-}
-
 /**
  * Weekly practice chart
  */
-
 function setupWeeklyPracticeChart() {
   const chartCanvas = document.getElementById('weeklyPracticeChart');
 
@@ -599,10 +574,9 @@ function setupWeeklyPracticeChart() {
   });
 }
 
-/*
+/**
  * Practice page chart
  */
-
 function setupPracticeAnalyticsChart() {
   const chartCanvas = document.getElementById('sessionAnalyticsChart');
   const pieceSelect = document.getElementById('practicePiece');
@@ -740,6 +714,9 @@ function setupPracticeAnalyticsChart() {
   updateChartForSelectedPiece();
 }
 
+/**
+ * PDF upload modal
+ */
 function setupPdfUploadModal() {
   const openButton = document.getElementById('openUploadModal');
   const modal = document.getElementById('uploadModal');
@@ -802,6 +779,100 @@ function setupPdfUploadModal() {
       if (!file) {
         alert('Please select a PDF file first.');
         return;
+      }
+
+      closeModal();
+    });
+  }
+
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+}
+
+function setupPerformanceModal() {
+  const openButton = document.getElementById('openPerformanceModal');
+  const modal = document.getElementById('performanceModal');
+  const closeButton = document.getElementById('closePerformanceModal');
+  const cancelButton = document.getElementById('cancelPerformanceButton');
+  const confirmButton = document.getElementById('confirmPerformanceButton');
+
+  const captionInput = document.getElementById('performanceCaptionInput');
+  const dateInput = document.getElementById('performanceDateInput');
+  const locationInput = document.getElementById('performanceLocationInput');
+  const youtubeInput = document.getElementById('performanceYoutubeInput');
+  const performanceTimeline = document.getElementById('performanceTimeline');
+
+  if (!openButton || !modal || !captionInput || !dateInput || !locationInput || !youtubeInput) return;
+
+  function openModal() {
+    modal.classList.add('open');
+    captionInput.focus();
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    captionInput.value = '';
+    dateInput.value = '';
+    locationInput.value = '';
+    youtubeInput.value = '';
+  }
+
+  function isValidYoutubeLink(url) {
+    return (
+      url.startsWith('https://www.youtube.com/') ||
+      url.startsWith('https://youtu.be/')
+    );
+  }
+
+  function formatDate(dateValue) {
+    if (!dateValue) return '';
+
+    const parts = dateValue.split('-');
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  }
+
+  openButton.addEventListener('click', openModal);
+
+  if (closeButton) closeButton.addEventListener('click', closeModal);
+  if (cancelButton) cancelButton.addEventListener('click', closeModal);
+
+  if (confirmButton) {
+    confirmButton.addEventListener('click', function () {
+      const caption = captionInput.value.trim();
+      const date = dateInput.value.trim();
+      const location = locationInput.value.trim();
+      const youtubeUrl = youtubeInput.value.trim();
+
+      if (!caption || !date || !location || !youtubeUrl) {
+        alert('Please fill in the caption, date, location, and YouTube link.');
+        return;
+      }
+
+      if (!isValidYoutubeLink(youtubeUrl)) {
+        alert('Please enter a valid YouTube link starting with https://www.youtube.com/ or https://youtu.be/');
+        return;
+      }
+
+      if (performanceTimeline) {
+        const newCard = document.createElement('a');
+        newCard.className = 'card perf-card';
+        newCard.href = youtubeUrl;
+        newCard.target = '_blank';
+        newCard.rel = 'noopener noreferrer';
+
+        newCard.innerHTML = `
+          <div class="perf-placeholder">▶</div>
+          <div class="perf-body">
+            <div class="perf-title">${caption}</div>
+            <div class="perf-line">📅 ${formatDate(date)}</div>
+            <div class="perf-line">📍 ${location}</div>
+          </div>
+        `;
+
+        performanceTimeline.prepend(newCard);
       }
 
       closeModal();

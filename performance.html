@@ -26,7 +26,7 @@
                     <h1>Performance Archive</h1>
                     <p class="subtitle">Track your musical milestones</p>
                 </div>
-                <button class="btn">＋ Add Performance</button>
+                <button class="btn" id="openPerformanceModal" type="button">＋ Add Performance</button>
             </section>
             <section class="grid-3 dashboard-stats">
                 <article class="stat-card">
@@ -83,6 +83,58 @@
                 </div>
             </a>
             </section>
+            <div class="modal-overlay" id="performanceModal">
+                <div class="upload-modal">
+                  <button class="modal-close" id="closePerformanceModal" type="button">×</button>
+              
+                  <h2>Add Performance</h2>
+                  <p class="subtitle">Enter your performance details and YouTube recording link.</p>
+              
+                  <div class="form-group">
+                    <label for="performanceCaptionInput"><strong>Caption</strong></label>
+                    <input
+                      id="performanceCaptionInput"
+                      class="text-input"
+                      type="text"
+                      placeholder="Performance Name"
+                    >
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="performanceDateInput"><strong>Date</strong></label>
+                    <input
+                      id="performanceDateInput"
+                      class="text-input"
+                      type="date"
+                    >
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="performanceLocationInput"><strong>Location</strong></label>
+                    <input
+                      id="performanceLocationInput"
+                      class="text-input"
+                      type="text"
+                      placeholder="Performance Venue"
+                    >
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="performanceYoutubeInput"><strong>YouTube Link</strong></label>
+                    <input
+                      id="performanceYoutubeInput"
+                      class="text-input"
+                      type="url"
+                      placeholder="https://www.youtube.com/watch?v=..."
+                    >
+                  </div>
+              
+                  <div class="modal-actions">
+                    <button class="btn secondary" id="cancelPerformanceButton" type="button">Cancel</button>
+                    <button class="btn" id="confirmPerformanceButton" type="button">Add Performance</button>
+                  </div>
+                </div>
+              </div>
 </main>
 <script src="js/script.js"></script>
 </body>

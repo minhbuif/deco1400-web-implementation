@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function () {
   setupPdfUploadModal();
 });
 
-/* -----------------------------
-   1. Mobile navigation
------------------------------ */
+/**
+ * Mobile navigation 
+ */
 
 function setupMobileNavigation() {
   const navToggle = document.querySelector('.nav-toggle');
@@ -36,9 +36,9 @@ function setupMobileNavigation() {
   });
 }
 
-/* -----------------------------
-   2. Practice timer
------------------------------ */
+/**
+ * Practice timer
+ */
 
 function setupPracticeTimer() {
   const timerDisplay = document.getElementById('timerDisplay');
@@ -83,9 +83,9 @@ function setupPracticeTimer() {
   }
 }
 
-/* -----------------------------
-   3. Repertoire search and filter
------------------------------ */
+/**
+ * Repertoire search and filter
+ */
 
 function setupRepertoireFilters() {
   const searchInput = document.getElementById('pieceSearch');
@@ -140,9 +140,9 @@ function setupRepertoireFilters() {
   filterPieces();
 }
 
-/* -----------------------------
-   4. Browse carousel
------------------------------ */
+/**
+ * Browse carousel
+ */
 
 function setupBrowseCarousel() {
   const browseCards = Array.from(document.querySelectorAll('.browse-card'));
@@ -268,7 +268,9 @@ function setupBrowseCarousel() {
   updateBrowseCarousel(true);
 }
 
-// Piano sheet viewer
+/**
+ * Piano sheet viewer
+ */
 
 const pianoPieces = {
   liebestraum: {
@@ -513,7 +515,9 @@ function setupNotesAutosave() {
   });
 }
 
-// Weekly practice chart
+/**
+ * Weekly practice chart
+ */
 
 function setupWeeklyPracticeChart() {
   const chartCanvas = document.getElementById('weeklyPracticeChart');
@@ -521,7 +525,6 @@ function setupWeeklyPracticeChart() {
   if (!chartCanvas) return;
 
   if (typeof Chart === 'undefined') {
-    console.warn('Chart.js is not loaded.');
     return;
   }
 
@@ -596,9 +599,9 @@ function setupWeeklyPracticeChart() {
   });
 }
 
-/* -----------------------------
-   Practice page Chart.js chart
------------------------------ */
+/*
+ * Practice page chart
+ */
 
 function setupPracticeAnalyticsChart() {
   const chartCanvas = document.getElementById('sessionAnalyticsChart');
@@ -608,7 +611,6 @@ function setupPracticeAnalyticsChart() {
   if (!chartCanvas || !pieceSelect) return;
 
   if (typeof Chart === 'undefined') {
-    console.warn('Chart.js is not loaded on practice.html');
     return;
   }
 

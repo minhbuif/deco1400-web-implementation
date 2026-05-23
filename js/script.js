@@ -1,19 +1,17 @@
 /*
   JavaScript functions
   Includes:
-  1. Mobile navigation
-  2. Practice timer
-  3. Repertoire search and filter
-  4. Browse carousel
-  5. Dynamic piano sheet page viewer
-  6. Weekly practice chart
-  7. Practice session analytics chart
-  8. PDF upload modal
-  9. Performance entry modal
+  1. Practice timer
+  2. Repertoire search and filter
+  3. Browse carousel
+  4. Dynamic piano sheet page viewer
+  5. Weekly practice chart
+  6. Practice session analytics chart
+  7. PDF upload modal
+  8. Performance entry modal
 */
 
 document.addEventListener('DOMContentLoaded', function () {
-  setupMobileNavigation();
   setupPracticeTimer();
   setupRepertoireFilters();
   setupBrowseCarousel();
@@ -23,20 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
   setupPdfUploadModal();
   setupPerformanceModal();
 });
-
-/**
- * Mobile navigation 
- */
-function setupMobileNavigation() {
-  const navToggle = document.querySelector('.nav-toggle');
-  const mainNav = document.querySelector('.main-nav');
-
-  if (!navToggle || !mainNav) return;
-
-  navToggle.addEventListener('click', function () {
-    mainNav.classList.toggle('open');
-  });
-}
 
 /**
  * Practice timer
@@ -50,8 +34,13 @@ function setupPracticeTimer() {
   if (!timerDisplay || !startButton || !stopButton) return;
 
   let seconds = 0;
+
+  // Timer interval ID for starting/stopping the timer
   let timerInterval = null;
 
+  /**
+   * Formats seconds into HH:MM:SS
+   */
   function updateTimerDisplay() {
     const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
     const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
@@ -95,12 +84,16 @@ function setupRepertoireFilters() {
 
   if (!searchInput || !difficultyFilter || !pieceCards.length) return;
 
+  /**
+   * Filters pieces based on search input and difficulty
+   */
   function filterPieces() {
     const searchValue = searchInput.value.toLowerCase().trim();
     const difficultyValue = difficultyFilter.value;
 
     let visibleCount = 0;
 
+    // Loop through each piece and determine if it should be shown
     pieceCards.forEach(function (card) {
       const title = card.dataset.title ? card.dataset.title.toLowerCase() : '';
       const composer = card.dataset.composer ? card.dataset.composer.toLowerCase() : '';
@@ -161,12 +154,19 @@ function setupBrowseCarousel() {
     return 4;
   }
 
+  /**
+   * Returns the currently matching browse cards based on filters
+   */
   function getMatchingCards() {
     return browseCards.filter(function (card) {
       return card.dataset.matches !== 'false';
     });
   }
 
+  /**
+   * Updates the browse carousel display based on current filters and pagination
+   * @param {*} resetPosition determines whether to reset the starting position
+   */
   function updateBrowseCarousel(resetPosition) {
     const matchingCards = getMatchingCards();
     const pageSize = getPageSize();
@@ -352,6 +352,9 @@ const pianoPieces = {
   }
 };
 
+/**
+ * Setups the individual piece page with content and navigation
+ */
 function setupPieceDetailPage() {
   const sheetImage = document.getElementById('sheetImage');
   const pieceTitle = document.getElementById('pieceTitle');
@@ -381,6 +384,9 @@ function setupPieceDetailPage() {
   const nextBottomButton = document.getElementById('nextSheetPageBottom');
   const viewRecordingButton = document.getElementById('viewRecordingButton');
 
+  /**
+   * Loads the piece information into the page based on the current piece data
+   */
   function loadPieceInformation() {
     document.title = `Piano Dashboard | ${currentPiece.title}`;
 
@@ -403,7 +409,9 @@ function setupPieceDetailPage() {
     }
   }
 
-  // Page flipping for pieces
+  /**
+   * Renders the current page of the sheet music and updates the page indicator and thumbnail
+   */
   function renderCurrentPage() {
     sheetImage.src = currentPiece.pages[currentPage];
     sheetImage.alt = `${currentPiece.title} - page ${currentPage + 1}`;
@@ -419,6 +427,9 @@ function setupPieceDetailPage() {
     });
   }
 
+  /**
+   * Renders the thumbnail buttons for each page and sets up their click handlers for navigation
+   */
   function renderThumbnails() {
     if (!thumbnailContainer) return;
 
@@ -613,7 +624,7 @@ function setupPracticeAnalyticsChart() {
       minutes: [20, 35, 40]
     },
 
-    turca: {
+    turkish: {
       title: 'Rondo alla Turca',
       labels: ['Session 1', 'Session 2', 'Session 3'],
       minutes: [30, 28, 36]
@@ -696,6 +707,9 @@ function setupPracticeAnalyticsChart() {
     }
   });
 
+  /**
+   * Updates the chart data based on the selected piece from the dropdown
+   */
   function updateChartForSelectedPiece() {
     const pieceId = pieceSelect.value;
     const newData = practiceData[pieceId] || practiceData.overall;
@@ -792,6 +806,9 @@ function setupPdfUploadModal() {
   });
 }
 
+/**
+ * Performance entry modal
+ */
 function setupPerformanceModal() {
   const openButton = document.getElementById('openPerformanceModal');
   const modal = document.getElementById('performanceModal');

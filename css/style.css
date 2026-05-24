@@ -1,7 +1,4 @@
-/*
-  Piano Dashboard website
-*/
-
+/* Website theme */
 :root {
   --bg: #ffffff;
   --text: #070707;
@@ -16,6 +13,7 @@
   --max-width: 1260px;
 }
 
+/* Base styles */
 * {
   box-sizing: border-box;
 }
@@ -57,22 +55,7 @@ textarea {
   z-index: 20;
 }
 
-.logo {
-  color: #000;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 25px;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.logo-mark {
-  font-size: 30px;
-  line-height: 1;
-}
-
+/* Navigation header */
 .main-nav {
   display: flex;
   align-items: center;
@@ -88,6 +71,22 @@ textarea {
 
 .main-nav a.active {
   font-weight: 700;
+}
+
+.logo {
+  color: #000;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 25px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.logo-mark {
+  font-size: 30px;
+  line-height: 1;
 }
 
 main {
@@ -176,6 +175,12 @@ h3 {
   text-decoration: none;
 }
 
+/*
+  Grid layouts.
+  - grid-2 is used for two-column sections
+  - grid-3 is used for stat cards (like in the home page)
+  - grid-4 is used for pieces cards in the repertoire page
+*/
 .grid-2 {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -194,6 +199,7 @@ h3 {
   gap: 24px;
 }
 
+/* Dashboard and performance stat cards */
 .stat-card {
   height: 78px;
   border: 1px solid var(--line);
@@ -239,6 +245,7 @@ h3 {
   letter-spacing: -0.035em;
 }
 
+/* Repertoire piece cards and hover effects */
 .piece-card {
   min-height: 310px;
   padding: 14px;
@@ -273,6 +280,7 @@ h3 {
   max-width: 220px;
 }
 
+/* Difficulty badges */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -298,6 +306,7 @@ h3 {
   color: #8f9418;
 }
 
+/* Practice page layout */
 .practice-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -381,6 +390,7 @@ h3 {
   margin-bottom: 8px;
 }
 
+/* Search and filter controls */
 .repertoire-controls {
   border: 1px solid var(--line);
   border-radius: 11px;
@@ -397,6 +407,7 @@ h3 {
   margin: 20px 0;
 }
 
+/* Browse carousel */
 .browse-head {
   display: flex;
   align-items: center;
@@ -447,6 +458,9 @@ h3 {
   min-height: 310px;
 }
 
+/*
+  Performance archive cards, clicks link to a YouTube recording
+*/
 .performance-timeline {
   margin-top: 22px;
 }
@@ -475,6 +489,9 @@ h3 {
   margin: 8px 0;
 }
 
+/*
+  Creative page cards that link to composition pages
+*/
 .image-card {
   cursor: pointer;
   text-decoration: none;
@@ -522,6 +539,10 @@ h3 {
   padding: 0 12px;
 }
 
+/*
+  Layout for music sheets and compositions
+  This grid creates a large sheet or canvas area on the left and metadata or actions on the right
+*/
 .sheet-layout {
   display: grid;
   grid-template-columns: minmax(520px, 1fr) 370px;
@@ -754,6 +775,10 @@ textarea.notes {
   font-weight: 700;
 }
 
+/*
+  Controls the thumbnail layout, active state, and horizontal scrolling
+  for switching between pages of a sheet
+*/
 .sheet-thumbnails {
   display: flex;
   gap: 12px;
@@ -848,7 +873,10 @@ textarea.notes {
   font-size: 14px;
 }
 
-/* PDF upload modal */
+/*
+  Modal overlay for Add Piece and Add Performance.
+  It's hidden by default and becomes visible when JavaScript adds the .open class
+*/
 .modal-overlay {
   position: fixed;
   inset: 0;

@@ -11,6 +11,10 @@
   8. Performance entry modal
 */
 
+/*
+  Runs all setup functions only after the HTML has loaded.
+  This prevents JavaScript from searching for elements before they exist in the DOM.
+*/
 document.addEventListener('DOMContentLoaded', function () {
   setupPracticeTimer();
   setupRepertoireFilters();
@@ -107,6 +111,7 @@ function setupRepertoireFilters() {
 
       const shouldShow = matchesSearch && matchesDifficulty;
 
+      // Store the result so the Browse carousel can reuse it
       card.dataset.matches = shouldShow ? 'true' : 'false';
 
       if (!card.classList.contains('browse-card')) {
@@ -145,8 +150,8 @@ function setupBrowseCarousel() {
 
   if (!browseCards.length || !prevButton || !nextButton) return;
 
-  let browseStart = 0;
-  let viewAll = false;
+  let browseStart = 0; // tracks the first visible card
+  let viewAll = false; // seeing all or only one page
 
   function getPageSize() {
     if (window.innerWidth <= 600) return 1;
@@ -361,7 +366,8 @@ function setupPieceDetailPage() {
 
   if (!sheetImage || !pieceTitle) return;
 
-  const params = new URLSearchParams(window.location.search);
+  // Read the piece ID from the URL
+  const params = new URLSearchParams(window.location.search); 
   const pieceId = params.get('id') || 'liebestraum';
   const currentPiece = pianoPieces[pieceId] || pianoPieces.liebestraum;
 
@@ -410,7 +416,7 @@ function setupPieceDetailPage() {
   }
 
   /**
-   * Renders the current page of the sheet music and updates the page indicator and thumbnail
+   * Updates the main sheet image, page indicator, and active thumbnail
    */
   function renderCurrentPage() {
     sheetImage.src = currentPiece.pages[currentPage];
@@ -428,7 +434,7 @@ function setupPieceDetailPage() {
   }
 
   /**
-   * Renders the thumbnail buttons for each page and sets up their click handlers for navigation
+   * Creates thumbnail buttons dynamically based on the current piece's number of pages
    */
   function renderThumbnails() {
     if (!thumbnailContainer) return;
@@ -485,6 +491,7 @@ function setupPieceDetailPage() {
   if (prevBottomButton) prevBottomButton.addEventListener('click', goToPreviousPage);
   if (nextBottomButton) nextBottomButton.addEventListener('click', goToNextPage);
 
+  // Keyboard: left and right arrow keys move between sheet pages.
   document.addEventListener('keydown', function (event) {
     if (!sheetImage) return;
 
@@ -586,7 +593,8 @@ function setupWeeklyPracticeChart() {
 }
 
 /**
- * Practice page chart
+ * Practice page chart.
+ * One line chart is reused, its data changes depending on the piece
  */
 function setupPracticeAnalyticsChart() {
   const chartCanvas = document.getElementById('sessionAnalyticsChart');
@@ -708,7 +716,7 @@ function setupPracticeAnalyticsChart() {
   });
 
   /**
-   * Updates the chart data based on the selected piece from the dropdown
+   * Updates the chart data based on the selected piece
    */
   function updateChartForSelectedPiece() {
     const pieceId = pieceSelect.value;

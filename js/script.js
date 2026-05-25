@@ -11,10 +11,10 @@
   8. Performance entry modal
 */
 
-/*
-  Runs all setup functions only after the HTML has loaded.
-  This prevents JavaScript from searching for elements before they exist in the DOM.
-*/
+/**
+ * Runs all setup functions only after the HTML has loaded.
+ * Prevents JavaScript from searching for elements before they exist in the DOM.
+ */
 document.addEventListener('DOMContentLoaded', function () {
   setupPracticeTimer();
   setupRepertoireFilters();
